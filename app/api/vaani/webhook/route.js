@@ -2,7 +2,7 @@
 // Replies 200 immediately and runs the pipeline in the background (after()),
 // so Vaani never times out and retries. Add ?sync=1 to wait for the result.
 import { after } from 'next/server';
-import { checkSecret, unauthorized } from '@/lib/auth';
+import { audit, checkSecret, unauthorized } from '@/lib/auth';
 import { processCall, normalizePayload } from '@/lib/pipeline';
 import { logEvent } from '@/lib/db';
 
@@ -14,7 +14,7 @@ export const maxDuration = 60;
 const NON_FINAL = /^(call[._-]?)?(started|ringing|initiated|in[_-]?progress|queued|answered|ongoing|ended|rejected|no_answer)$|picked_up|transfer/i;
 
 export async function POST(request) {
-  if (!checkSecret(request)) return unauthorized();
+  if (!(await audit(request, 'webhook'))) return unauthorized();
   const raw = await request.json().catch(() => null);
   if (!raw) return Response.json({ error: 'invalid JSON' }, { status: 400 });
 

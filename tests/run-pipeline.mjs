@@ -7,6 +7,9 @@ if (process.env.DATABASE_URL !== 'pglite') {
   console.error('Run with DATABASE_URL=pglite (npm test does this).');
   process.exit(1);
 }
+// Never touch real calendars / CRMs / Vaani from tests.
+delete process.env.CALCOM_API_KEY;
+delete process.env.VAANI_API_KEY;
 process.env.HANDOFF_EMAIL ||= 'designer@example.com';
 process.env.ESCALATION_EMAIL ||= 'nikhil@example.com';
 process.env.HUBSPOT_TOKEN ||= 'test-token';

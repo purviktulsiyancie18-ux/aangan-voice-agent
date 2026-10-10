@@ -1,12 +1,12 @@
 // POST /api/tools/availability — the agent asks for two consultation slots to offer.
-import { checkSecret, unauthorized, readArgs } from '@/lib/auth';
+import { audit, checkSecret, unauthorized, readArgs } from '@/lib/auth';
 import { getSlots } from '@/lib/calendar';
 import { logEvent } from '@/lib/db';
 
 export const runtime = 'nodejs';
 
 export async function POST(request) {
-  if (!checkSecret(request)) return unauthorized();
+  if (!(await audit(request, 'availability'))) return unauthorized();
   const { args } = await readArgs(request);
   try {
     const { slots, source } = await getSlots({
@@ -24,3 +24,6 @@ export async function POST(request) {
     return Response.json({ slots: [], message: "The calendar isn't reachable. Take their preferred day and time, and say the studio will confirm the slot by phone shortly." });
   }
 }
+
+// Some tool builders call with GET + query parameters.
+export const GET = POST;

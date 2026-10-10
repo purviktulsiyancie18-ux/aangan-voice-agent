@@ -1,12 +1,12 @@
 // POST /api/tools/lookup-caller — called by the agent at the start of every call.
-import { checkSecret, unauthorized, readArgs } from '@/lib/auth';
+import { audit, checkSecret, unauthorized, readArgs } from '@/lib/auth';
 import { lookupCaller } from '@/lib/pipeline';
 import { formatIST } from '@/lib/rules';
 
 export const runtime = 'nodejs';
 
 export async function POST(request) {
-  if (!checkSecret(request)) return unauthorized();
+  if (!(await audit(request, 'lookup-caller'))) return unauthorized();
   const { body, args } = await readArgs(request);
   const phone = args.phone ?? args.caller_phone ?? args.from ?? body.from ?? body.call?.from ?? body.caller;
   try {
@@ -25,3 +25,6 @@ export async function POST(request) {
     return Response.json({ known: false, message: 'Lookup unavailable — treat as a new caller.', error: err.message });
   }
 }
+
+// Some tool builders call with GET + query parameters.
+export const GET = POST;

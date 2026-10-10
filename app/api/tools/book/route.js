@@ -1,5 +1,5 @@
 // POST /api/tools/book — book the consultation during the call.
-import { checkSecret, unauthorized, readArgs } from '@/lib/auth';
+import { audit, checkSecret, unauthorized, readArgs } from '@/lib/auth';
 import { bookSlot } from '@/lib/calendar';
 import { logEvent } from '@/lib/db';
 import { normPhone } from '@/lib/rules';
@@ -7,7 +7,7 @@ import { normPhone } from '@/lib/rules';
 export const runtime = 'nodejs';
 
 export async function POST(request) {
-  if (!checkSecret(request)) return unauthorized();
+  if (!(await audit(request, 'book'))) return unauthorized();
   const { body, args } = await readArgs(request);
   const start = args.start ?? args.slot ?? args.start_time;
   if (!start || Number.isNaN(new Date(start).getTime())) {
@@ -36,3 +36,6 @@ export async function POST(request) {
     return Response.json({ ok: false, message: 'That slot could not be booked — it may have just been taken. Offer to check other times, or note their preference and say the studio will confirm by phone.' });
   }
 }
+
+// Some tool builders call with GET + query parameters.
+export const GET = POST;
