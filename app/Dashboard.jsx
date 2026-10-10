@@ -521,7 +521,7 @@ export default function Dashboard({ days, meta, summary, costs, daily, calls: in
           <section id="clients" style={{ ...card, gap: 14 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <h3 style={h3}>Existing clients</h3>
-              <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>Calls from these numbers are recognised and complaints escalated.</span>
+              <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>Calls from these numbers are recognised and complaints escalated. Leads you mark won, and existing clients who call, are added automatically.</span>
             </div>
             {clients.length > 0 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
