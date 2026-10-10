@@ -4,24 +4,24 @@ import { revalidatePath } from 'next/cache';
 import { query } from '@/lib/db';
 import { normPhone } from '@/lib/rules';
 
-export async function toggleConverted(formData) {
-  const callId = formData.get('call_id');
-  await query('update calls set converted = not converted, updated_at = now() where call_id = $1', [callId]);
+export async function setConverted(callId, converted) {
+  await query('update calls set converted = $2, updated_at = now() where call_id = $1', [callId, Boolean(converted)]);
   revalidatePath('/');
 }
 
-export async function addClient(formData) {
-  const phone = normPhone(formData.get('phone'));
-  if (!phone) return;
+export async function addClient({ phone, name, project, designer }) {
+  const p = normPhone(phone);
+  if (!p || !name) return { ok: false };
   await query(
     `insert into clients (phone, name, project, designer) values ($1, $2, $3, $4)
      on conflict (phone) do update set name = excluded.name, project = excluded.project, designer = excluded.designer`,
-    [phone, formData.get('name') || null, formData.get('project') || null, formData.get('designer') || null]
+    [p, name, project || null, designer || null]
   );
   revalidatePath('/');
+  return { ok: true };
 }
 
-export async function removeClient(formData) {
-  await query('delete from clients where phone = $1', [formData.get('phone')]);
+export async function removeClient(phone) {
+  await query('delete from clients where phone = $1', [normPhone(phone)]);
   revalidatePath('/');
 }

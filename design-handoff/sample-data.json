@@ -1,0 +1,165 @@
+{
+  "_note": "Realistic sample for a 30-day view. All people are fictional. Money in INR. Times in IST.",
+  "range_days": 30,
+  "updated_at": "2026-10-10T15:42:00+05:30",
+  "summary": {
+    "calls": 186,
+    "answered": 186,
+    "after_hours": 63,
+    "qualified": 71,
+    "not_fit": 54,
+    "incomplete": 38,
+    "existing_client": 6,
+    "other": 17,
+    "booked": 58,
+    "booked_confirmed": 52,
+    "converted": 9,
+    "handoffs_sent": 71,
+    "escalations_sent": 6,
+    "pricing_asked": 64,
+    "price_quoted": 0,
+    "returning_callers": 22,
+    "minutes": 812,
+    "integration_errors": 1
+  },
+  "baseline_before": {
+    "unanswered_48h_pct": 48,
+    "after_hours_pct": 33,
+    "conversion_multiplier_if_answered_within_1h": 4,
+    "avg_project_value_lakh": [8, 14]
+  },
+  "costs": {
+    "voice_inr": 4872.0,
+    "ai_inr": 37.2,
+    "fixed_inr": 0,
+    "total_inr": 4909.2,
+    "per_call_inr": 26.39,
+    "per_qualified_lead_inr": 69.14
+  },
+  "value": {
+    "pipeline_lakh": [568, 994],
+    "won_projects": 9,
+    "won_value_lakh_estimate": [72, 126]
+  },
+  "daily": [
+    {"day": "2026-09-11", "in_hours": 4, "after_hours": 2}, {"day": "2026-09-12", "in_hours": 5, "after_hours": 3},
+    {"day": "2026-09-13", "in_hours": 0, "after_hours": 4}, {"day": "2026-09-14", "in_hours": 0, "after_hours": 3},
+    {"day": "2026-09-15", "in_hours": 6, "after_hours": 2}, {"day": "2026-09-16", "in_hours": 5, "after_hours": 1},
+    {"day": "2026-09-17", "in_hours": 4, "after_hours": 2}, {"day": "2026-09-18", "in_hours": 6, "after_hours": 3},
+    {"day": "2026-09-19", "in_hours": 3, "after_hours": 2}, {"day": "2026-09-20", "in_hours": 0, "after_hours": 3},
+    {"day": "2026-09-21", "in_hours": 0, "after_hours": 2}, {"day": "2026-09-22", "in_hours": 5, "after_hours": 2},
+    {"day": "2026-09-23", "in_hours": 4, "after_hours": 1}, {"day": "2026-09-24", "in_hours": 5, "after_hours": 2},
+    {"day": "2026-09-25", "in_hours": 4, "after_hours": 2}, {"day": "2026-09-26", "in_hours": 6, "after_hours": 3},
+    {"day": "2026-09-27", "in_hours": 0, "after_hours": 3}, {"day": "2026-09-28", "in_hours": 0, "after_hours": 2},
+    {"day": "2026-09-29", "in_hours": 5, "after_hours": 2}, {"day": "2026-09-30", "in_hours": 4, "after_hours": 1},
+    {"day": "2026-10-01", "in_hours": 5, "after_hours": 2}, {"day": "2026-10-02", "in_hours": 3, "after_hours": 1},
+    {"day": "2026-10-03", "in_hours": 4, "after_hours": 2}, {"day": "2026-10-04", "in_hours": 0, "after_hours": 3},
+    {"day": "2026-10-05", "in_hours": 0, "after_hours": 2}, {"day": "2026-10-06", "in_hours": 6, "after_hours": 3},
+    {"day": "2026-10-07", "in_hours": 5, "after_hours": 2}, {"day": "2026-10-08", "in_hours": 4, "after_hours": 1},
+    {"day": "2026-10-09", "in_hours": 6, "after_hours": 2}, {"day": "2026-10-10", "in_hours": 3, "after_hours": 1}
+  ],
+  "calls": [
+    {
+      "started_at": "2026-10-09T22:12:00+05:30", "after_hours": true, "returning_caller": false,
+      "caller_name": "Ishaan Kulkarni", "caller_phone": "98220 70001", "duration": "4:34", "cost_inr": 30.21,
+      "classification": "qualified", "reason": "Passes all five criteria",
+      "summary": "3BHK in Aundh (ITI Road), 1,300 sq ft, lived-in builder finish. Full home design + execution, done by April. Caller and wife own it. Asked for price once — deflected. Site-visit consultation booked.",
+      "project": {"type": "Residential · 3BHK apartment", "location": "Aundh, Pune", "carpet_area_sqft": 1300, "scope": "Full home — kitchen, wardrobes, living, 3 bedrooms", "current_state": "Lived-in, builder finish", "timeline": "Complete by April 2027", "decision_maker": "Caller + wife (owners)", "budget_volunteered": "Not mentioned", "language": "English", "mood": "positive", "referral": "Instagram"},
+      "criteria": {"real_project": "pass", "service_area": "pass", "timeline": "pass", "budget": "pass", "decision_maker": "pass"},
+      "flags": [], "pricing_asked": true, "price_quoted": false,
+      "booking": {"status": "booked", "when": "Thu 15 Oct, 11:00 am", "site_visit": true},
+      "actions": {"handoff_sent": true, "hubspot_deal": true, "escalation_sent": false}, "converted": false
+    },
+    {
+      "started_at": "2026-10-09T20:41:00+05:30", "after_hours": true, "returning_caller": false,
+      "caller_name": "Farhan Sheikh", "caller_phone": "98900 77777", "duration": "3:50", "cost_inr": 24.18,
+      "classification": "existing_client", "reason": "Existing client — escalate to Nikhil / senior for a 15-minute callback",
+      "summary": "Existing client, 3BHK in Wakad. Carpenter hasn't come for six days; designer Meera not answering. Angry, wants Nikhil or a senior person.",
+      "project": {"type": "Existing project", "location": "Wakad", "designer": "Meera", "mood": "angry"},
+      "flags": ["Existing-client issue"], "pricing_asked": false, "price_quoted": false, "booking": null,
+      "actions": {"handoff_sent": false, "hubspot_deal": false, "escalation_sent": true}, "converted": false
+    },
+    {
+      "started_at": "2026-10-09T15:05:00+05:30", "after_hours": false, "returning_caller": false,
+      "caller_name": "Rahul Menon", "caller_phone": "98900 22222", "duration": "4:50", "cost_inr": 30.20,
+      "classification": "qualified", "reason": "Passes all five criteria",
+      "summary": "2BHK in Hinjewadi Phase 2, ~900 sq ft, full redesign, done by March. Owner. Pushed for a price three times — deflected each time, then booked.",
+      "project": {"type": "Residential · 2BHK", "location": "Hinjewadi Phase 2", "carpet_area_sqft": 900, "scope": "Kitchen, both bedrooms, living", "timeline": "By March", "decision_maker": "Owner", "budget_volunteered": "Not mentioned", "language": "English", "mood": "neutral"},
+      "criteria": {"real_project": "pass", "service_area": "pass", "timeline": "pass", "budget": "pass", "decision_maker": "pass"},
+      "flags": [], "pricing_asked": true, "price_quoted": false,
+      "booking": {"status": "booked", "when": "Sat 17 Oct, 11:00 am", "site_visit": false},
+      "actions": {"handoff_sent": true, "hubspot_deal": true, "escalation_sent": false}, "converted": true
+    },
+    {
+      "started_at": "2026-10-08T21:05:00+05:30", "after_hours": true, "returning_caller": false,
+      "caller_name": "Sunil Pawar", "caller_phone": "98900 99999", "duration": "4:20", "cost_inr": 30.20,
+      "classification": "qualified", "reason": "Passes all five criteria",
+      "summary": "Hinglish caller. 2BHK in Ravet, 850 sq ft, full interiors with execution, Feb–March. Owner with wife; both will attend.",
+      "project": {"type": "Residential · 2BHK", "location": "Ravet (PCMC)", "carpet_area_sqft": 850, "scope": "Full home", "timeline": "Feb–Mar 2027", "decision_maker": "Caller + wife", "language": "Hinglish", "mood": "positive"},
+      "criteria": {"real_project": "pass", "service_area": "pass", "timeline": "pass", "budget": "pass", "decision_maker": "pass"},
+      "flags": [], "pricing_asked": false, "price_quoted": false,
+      "booking": {"status": "booked", "when": "Sat 10 Oct, 11:00 am", "site_visit": true},
+      "actions": {"handoff_sent": true, "hubspot_deal": true, "escalation_sent": false}, "converted": false
+    },
+    {
+      "started_at": "2026-10-08T12:00:00+05:30", "after_hours": false, "returning_caller": false,
+      "caller_name": null, "caller_phone": "98220 12345", "duration": "4:00", "cost_inr": 24.20,
+      "classification": "qualified", "reason": "Passes all five criteria",
+      "summary": "Calling for parents: 3BHK in Kalyani Nagar, 15 years lived-in, kitchen + master bedroom + living with execution, early next year.",
+      "project": {"type": "Residential · 3BHK", "location": "Kalyani Nagar", "scope": "Kitchen, master bedroom, living", "timeline": "Early 2027, flexible", "decision_maker": "Parents (not on call)", "language": "English"},
+      "criteria": {"real_project": "pass", "service_area": "pass", "timeline": "pass", "budget": "pass", "decision_maker": "unclear"},
+      "flags": ["Unclear: decision-maker — caller is checking for parents; confirm parents attend"], "pricing_asked": false, "price_quoted": false,
+      "booking": null, "actions": {"handoff_sent": true, "hubspot_deal": true, "escalation_sent": false}, "converted": false
+    },
+    {
+      "started_at": "2026-10-07T09:20:00+05:30", "after_hours": true, "returning_caller": false,
+      "caller_name": null, "caller_phone": "98220 70002", "duration": "1:35", "cost_inr": 12.18,
+      "classification": "not_fit", "reason": "Service area: site in Nashik Road — outside Pune/PCMC",
+      "summary": "2BHK in Nashik Road, full interiors by January. Declined politely — outside service area.",
+      "criteria": {"real_project": "pass", "service_area": "fail", "timeline": "pass", "budget": "pass", "decision_maker": "unclear"},
+      "flags": [], "pricing_asked": false, "price_quoted": false, "booking": null,
+      "actions": {"handoff_sent": false, "hubspot_deal": false, "escalation_sent": false}, "converted": false
+    },
+    {
+      "started_at": "2026-10-06T16:00:00+05:30", "after_hours": false, "returning_caller": false,
+      "caller_name": null, "caller_phone": "98900 66666", "duration": "3:20", "cost_inr": 24.21,
+      "classification": "not_fit", "reason": "Budget: volunteered ₹2 lakh is clearly below a full 800 sq ft 2BHK with execution",
+      "summary": "2BHK in Pimpri, 800 sq ft, full house. Volunteered ₹2 L max. Agent addressed it kindly and suggested a local contractor.",
+      "criteria": {"real_project": "pass", "service_area": "pass", "timeline": "unclear", "budget": "fail", "decision_maker": "pass"},
+      "flags": [], "pricing_asked": false, "price_quoted": false, "booking": null,
+      "actions": {"handoff_sent": false, "hubspot_deal": false, "escalation_sent": false}, "converted": false
+    },
+    {
+      "started_at": "2026-10-06T23:05:00+05:30", "after_hours": true, "returning_caller": false,
+      "caller_name": null, "caller_phone": "98900 88888", "duration": "0:09", "cost_inr": 6.00,
+      "classification": "incomplete", "reason": "Call dropped or too short to qualify — front desk to call back",
+      "summary": "No conversation captured (dropped call).",
+      "flags": ["Dropped / very short call"], "pricing_asked": false, "price_quoted": false, "booking": null,
+      "actions": {"handoff_sent": false, "hubspot_deal": false, "escalation_sent": false}, "converted": false
+    },
+    {
+      "started_at": "2026-10-06T23:08:00+05:30", "after_hours": true, "returning_caller": true,
+      "caller_name": "Ritu Kapoor", "caller_phone": "98900 88888", "duration": "4:30", "cost_inr": 30.19,
+      "classification": "qualified", "reason": "Passes all five criteria",
+      "summary": "Called back after being cut off. 3BHK Pimple Saudagar, 1,050 sq ft, kitchen + wardrobes + living, done by March.",
+      "project": {"type": "Residential · 3BHK", "location": "Pimple Saudagar (PCMC)", "carpet_area_sqft": 1050, "timeline": "By March", "decision_maker": "Owner"},
+      "criteria": {"real_project": "pass", "service_area": "pass", "timeline": "pass", "budget": "pass", "decision_maker": "pass"},
+      "flags": [], "pricing_asked": false, "price_quoted": false,
+      "booking": {"status": "requested", "when": "Mon 12 Oct, 4:00 pm", "site_visit": false},
+      "actions": {"handoff_sent": true, "hubspot_deal": true, "escalation_sent": false}, "converted": false
+    },
+    {
+      "started_at": "2026-10-05T15:00:00+05:30", "after_hours": false, "returning_caller": false,
+      "caller_name": null, "caller_phone": "98220 54321", "duration": "2:00", "cost_inr": 12.19,
+      "classification": "not_fit", "reason": "Real project: café is out of scope (services.md)",
+      "summary": "Café in Viman Nagar, 1,200 sq ft. Declined — hospitality out of scope; suggested a specialist studio.",
+      "criteria": {"real_project": "fail", "service_area": "pass", "timeline": "pass", "budget": "pass", "decision_maker": "unclear"},
+      "flags": [], "pricing_asked": false, "price_quoted": false, "booking": null,
+      "actions": {"handoff_sent": false, "hubspot_deal": false, "escalation_sent": false}, "converted": false
+    }
+  ],
+  "existing_clients": [
+    {"phone": "98900 77777", "name": "Farhan Sheikh", "project": "3BHK Wakad", "designer": "Meera"},
+    {"phone": "98220 33445", "name": "Sheetal D.", "project": "2BHK Viman Nagar", "designer": "Aryan"}
+  ]
+}
