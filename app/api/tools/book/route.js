@@ -24,7 +24,7 @@ export async function POST(request) {
       email: args.email,
       notes: args.notes ?? args.project_summary,
       location: args.location,
-      siteVisit: Boolean(args.site_visit),
+      siteVisit: /^(true|yes|1)$/i.test(`${args.site_visit ?? ""}`),
     });
     await logEvent('booking', { callId, phone, detail: { ...booking, name: args.name ?? null, email: args.email ?? null } });
     const message = booking.status === 'booked'
