@@ -166,7 +166,26 @@ Caller: Hi, I'm Neeta. I have a 2BHK in Kharadi, 950 sq ft, want a full redesign
 Agent: For a standard specification it's usually around ₹1,800 to ₹2,400 per square foot.
 Caller: Okay, let's book a consultation.` },
   },
+  {
+    name: 'Vaani call_postprocessing payload (real format)', expect: 'qualified',
+    payload: { event: 'call_postprocessing', call_id: 'inbound-1791000000-abc123', timestamp: at('2026-10-08T21:05:00'),
+      data: { room_name: 'inbound-1791000000-abc123', call_id: 'inbound-1791000000-abc123', call_duration: 188400.5, end_reason: 'Call ended',
+        summary: 'Caller wants full interiors for a 2BHK in Wakad.', entities: { name: 'Meghna Iyer' },
+        transcript: `[21:01:02] AGENT: Good evening, Aangan Studio, this is Aanya. How can I help you?
+
+[21:01:09] USER: Hi, I'm Meghna Iyer. I have a 2BHK in Wakad, about 880 square feet, and want the complete interiors done with execution.
+
+[21:01:20] AGENT: Lovely. When would you need it complete?
+
+[21:01:26] USER: By March. I own it with my husband, he's fine with me booking.
+
+[21:01:40] AGENT: Shall I book a free consultation? I have Saturday at 11 am.
+
+[21:01:45] USER: Yes please.` } } },
 ];
+
+// Vaani's call_started gives the caller's number; post-processing doesn't.
+await logEvent('vaani_start', { callId: 'inbound-1791000000-abc123', phone: '9822055555' });
 
 // Simulate the in-call booking tool for the cases that book.
 for (const c of CASES.filter((x) => x.book)) {
@@ -194,6 +213,10 @@ async function worker() {
       if (c.expect === 'qualified' && !r.handoff_sent) errs.push('handoff not sent');
       if (c.escalate && !r.escalation_sent) errs.push('escalation not sent');
       if (c.book && !r.booking) errs.push('booking not attached');
+      if (c.payload.event === 'call_postprocessing') {
+        if (r.caller_phone !== '9822055555') errs.push(`phone not recovered: ${r.caller_phone}`);
+        if (r.duration_sec !== 188) errs.push(`duration ${r.duration_sec}s ≠ 188s`);
+      }
       results.push({ name: c.name, ok: !errs.length, errs, r, ms: Date.now() - t0 });
     } catch (err) {
       results.push({ name: c.name, ok: false, errs: [err.message], ms: Date.now() - t0 });

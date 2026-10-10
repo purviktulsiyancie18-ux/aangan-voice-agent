@@ -5,7 +5,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const VARS = ['DATABASE_URL', 'GEMINI_API_KEY', 'GEMINI_MODEL', 'RESEND_API_KEY', 'EMAIL_FROM', 'HANDOFF_EMAIL', 'ESCALATION_EMAIL',
-  'CALCOM_API_KEY', 'CALCOM_USERNAME', 'CALCOM_EVENT_SLUG', 'HUBSPOT_TOKEN', 'WEBHOOK_SECRET', 'DASHBOARD_PASSWORD'];
+  'CALCOM_API_KEY', 'CALCOM_USERNAME', 'CALCOM_EVENT_SLUG', 'HUBSPOT_TOKEN', 'VAANI_API_KEY', 'WEBHOOK_SECRET', 'DASHBOARD_PASSWORD'];
 
 export async function GET() {
   const env = Object.fromEntries(VARS.map((v) => [v, Boolean(process.env[v])]));

@@ -9,7 +9,9 @@ import { logEvent } from '@/lib/db';
 export const runtime = 'nodejs';
 export const maxDuration = 60;
 
-const NON_FINAL = /^(call[._-]?)?(started|ringing|initiated|in[_-]?progress|queued|answered|ongoing)$/i;
+// Vaani fires call_started, user_picked_up_at, call_ended … then call_postprocessing
+// (transcript ready). Only the last one is processed; call_ended has no transcript.
+const NON_FINAL = /^(call[._-]?)?(started|ringing|initiated|in[_-]?progress|queued|answered|ongoing|ended|rejected|no_answer)$|picked_up|transfer/i;
 
 export async function POST(request) {
   if (!checkSecret(request)) return unauthorized();
@@ -17,7 +19,13 @@ export async function POST(request) {
   if (!raw) return Response.json({ error: 'invalid JSON' }, { status: 400 });
 
   const n = normalizePayload(raw);
-  if (n.event && NON_FINAL.test(`${n.event}`)) return Response.json({ ok: true, ignored: n.event });
+  if (n.event && NON_FINAL.test(`${n.event}`)) {
+    // Remember the caller's number from call_started — the post-call payload omits it.
+    if (/started/i.test(`${n.event}`) && n.phone) {
+      await logEvent('vaani_start', { callId: raw.call_id ?? raw.room_name ?? n.callId, phone: n.phone, detail: { event: n.event } });
+    }
+    return Response.json({ ok: true, ignored: n.event });
+  }
 
   const run = async () => {
     try {
