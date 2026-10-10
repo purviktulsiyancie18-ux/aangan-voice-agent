@@ -4,6 +4,7 @@
 import { useEffect, useLayoutEffect, useMemo, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { setConverted, addClient, removeClient } from './actions';
+import { signOut } from './login/actions';
 
 const SERIF = 'var(--font-display)';
 const OUT = {
@@ -212,6 +213,9 @@ export default function Dashboard({ days, meta, summary, costs, daily, calls: in
               <button onClick={toggleTheme} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, border: '1px solid var(--line-2)', background: 'transparent', color: 'var(--ink)', font: 'inherit', fontSize: 13, fontWeight: 600, height: 42, borderRadius: 999, cursor: 'pointer' }}>
                 <ThemeGlyph />{theme === 'dark' ? 'Light' : 'Dark'} mode
               </button>
+              <form action={signOut}>
+                <button type="submit" className="h-nav" style={{ width: '100%', border: 0, background: 'transparent', color: 'var(--ink-2)', font: 'inherit', fontSize: 13, fontWeight: 600, height: 36, borderRadius: 999, cursor: 'pointer' }}>Sign out</button>
+              </form>
             </div>
           </aside>
         )}
@@ -541,7 +545,12 @@ export default function Dashboard({ days, meta, summary, costs, daily, calls: in
             </form>
           </section>
 
-          <footer style={{ fontSize: 12, color: 'var(--ink-3)', textAlign: 'center', padding: '4px 0 16px' }}>Internal · Aangan Studio, Pune · All times IST</footer>
+          <footer style={{ fontSize: 12, color: 'var(--ink-3)', textAlign: 'center', padding: '4px 0 16px' }}>
+            Internal · Aangan Studio, Pune · All times IST
+            {mobile && (
+              <form action={signOut} style={{ display: 'inline' }}> · <button type="submit" style={{ border: 0, background: 'none', padding: 0, color: 'var(--accent-text)', font: 'inherit', fontWeight: 600, cursor: 'pointer' }}>Sign out</button></form>
+            )}
+          </footer>
         </main>
       </div>
     </div>
